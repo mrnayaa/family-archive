@@ -1,0 +1,133 @@
+/* Reset default margin and padding */
+body {
+    margin: 0;
+    padding: 0;
+    cursor: none;
+    overflow: hidden;
+}
+
+/* Styling for the book pages */
+.book-page {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.3), 10px 0 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    font-family: "Anonymous Pro", monospace;
+    color: #fff;
+    cursor: none;
+}
+
+p {
+    margin-right: 5%;
+    margin-left: 5%;
+    color: rgb(116, 4, 4);
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2vw;
+    line-height: 1.5; 
+}
+
+p[lang="ru"] {
+    color: rgb(116, 4, 4);
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2vw;
+    line-height: 1.5; 
+}
+
+h1 {
+    color: rgb(116, 4, 4);
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 2vw;
+    line-height: 1.5; 
+}
+
+/* Styling for the left page */
+.left-page {
+    float: left;
+    color: rgb(116, 4, 4);
+}
+
+/* Styling for the right page */
+.right-page {
+    float: right;
+    color: rgb(116, 4, 4);
+}
+
+/* Styling for the gutter */
+.gutter { /* Adjust the width of the gutter */
+    height: 100vw;
+    width: 100vh;
+    background: rgba(0, 0, 0, 0); /* Semi-transparent blurry line */
+    position: fixed;
+    display: fixed;
+    top: 0;
+    left: 50%; /* Position the gutter in the middle */
+    transform: translateX(-50%); /* Center the gutter horizontally */
+}
+
+.grid-container {
+    overflow: hidden;
+    width: 100%; /* Adjust the container width as needed */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); 
+    grid-template-rows: repeat(3, 1fr);/* Five columns */
+    gap: 2vh; /* Gap between grid items */
+    transition: transform 0.3s ease; /* Add smooth transition for slide effect */
+}
+
+.grid-item {
+    text-align: center;
+    padding: 2vh; /* Add padding for spacing */
+}
+
+.grid img {
+    max-width: 100%;
+    height: auto;
+    transition: filter 0.3s ease;
+}
+
+    /* Add CSS for green overlay */
+    .green-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 128, 0, 0.5); /* Adjust the RGBA values to change the tint color and opacity */
+        mix-blend-mode: multiply; /* Blend mode to apply the tint */
+    }
+
+
+
+p {
+    overflow: hidden;
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 400;
+    font-style: normal;
+font-style: normal;
+font-size: 1.2vw;
+}
+
+#cursor {
+    position: fixed;
+    width: 10vw;
+    height: 10vh;
+    background-image: url('cursor.svg'), url('leftcursor.svg');
+    background-repeat: no-repeat; /* Use the SVG file */
+    pointer-events: none; /* Ensure the cursor does not interact with content */
+    z-index: 9999; /* Ensure the cursor is on top of other elements */
+}
+

@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(116, 4, 4);
+font-family: 'Noto Sans Mono', monospace;
+font-family: 'Sixtyfour', sans-serif;
+}
+
+
+
+h1 {
+font-family: "superior-title", serif;
+font-weight: 400;
+font-style: normal;
+font-size: 5em;
+text-align: center;
+margin-top: 10vh;
+color: #fff;
+}
