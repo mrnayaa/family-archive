@@ -1,12 +1,10 @@
-/* Reset default margin and padding */
 body {
     margin: 0;
     padding: 0;
     cursor: none;
-    overflow: hidden;
 }
 
-/* Styling for the book pages */
+
 .book-page {
     width: 50%;
     height: 100vh;
@@ -15,82 +13,298 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #fff;
-    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.3), 10px 0 10px rgba(0, 0, 0, 0.3);
     overflow: hidden;
-    font-family: "Anonymous Pro", monospace;
+    font-family: "Jura", sans-serif;
     color: #fff;
     cursor: none;
+    background-image: url('');
+    vertical-align: top;
+}
+
+
+/*BOOK EFFECT*/
+/*
+.book-page {
+	width: calc(50vw - 6px);
+	min-height: 100vh;
+	box-sizing: border-box;
+	padding: 40px 60px;
+	display: inline-block;
+	vertical-align: top;
+	text-align: left;
+	position: relative;
+    font-family: "Jura", sans-serif;
+}
+*/
+
+section {
+	position: relative;
+	z-index: 10000;
+	mix-blend-mode: lighten;
+	background: white;
+}
+
+.left-page {
+    float: left;
+    color: rgb(5,101,23);
+}
+
+.right-page {
+    float: right;
+    color: rgb(222,26,36);
+}
+
+.spread {
+	width: calc(100vw - 3px);
+	float: left;
+	vertical-align: top;
+	text-align: center;
+	position: relative;
+    flex-wrap: wrap;
+}
+
+.pageNum {
+	bottom: 1.25rem;
+	left: 1.25rem;
+	z-index: 1;
+	position: absolute;
+}
+
+#toc h2 {
+	width: 100%;
+	text-align: center;
+}
+
+#toc ul {
+	margin: 40px 0px 0px;
+}
+
+#toc ul li {
+	list-style-type: none;
+}
+
+.page-number-toc {
+	width: 20px;
+	text-align: center;
+	margin-right: 1vw;
+	display: inline-block;
+}
+
+#toc ul li a{
+	background: none;
+}
+
+#toc ul li a:hover{
+	color: black;
+	opacity: .5;
+}
+
+/* background colors */
+
+#background {
+	position: fixed;
+    display: flex;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;	
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.green {
+    width: 50%;
+    height: 100%;
+    background: rgb(5,101,23);
+}
+
+.red {
+	width: 50%;
+    height: 100%;
+    background: rgb(222,26,36);
+}
+
+.left-page p, 
+.left-page li,
+.left-page ul,
+.left-page h1,
+.left-page h2 {
+    color: rgb(5,101,23); /* Blue color for paragraphs on the left page */
+}
+
+.right-page p,
+.right-page ul,
+.right-page li,
+.right-page h1,
+.right-page h2 {
+    color: rgb(222,26,36); /* Red color for elements on the right page */
+}
+
+
+.top-left {
+    left: 0;
+}
+
+.top-right {
+    right: 0;
+}
+
+/* Add styles for hover effect */
+.book-page:hover .corner:hover {
+    transform: translateY(-50%) rotate(-45deg); /* Rotate the corner */
+}
+
+
+
+#cover h1{
+	font-size: 5.25em;	
+	line-height: 1.1em;	
+	margin-bottom: .5em;
+
+	text-align: center;
 }
 
 p {
     margin-right: 5%;
     margin-left: 5%;
-    color: rgb(116, 4, 4);
-    font-family: "Anonymous Pro", monospace;
+    font-family: "Jura", sans-serif;
     font-weight: 400;
     font-style: normal;
+    text-align: left;
     font-size: 1.2vw;
     line-height: 1.5; 
 }
 
 p[lang="ru"] {
-    color: rgb(116, 4, 4);
-    font-family: "Anonymous Pro", monospace;
+    font-family: "Jura", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    font-size: 1.2vw;
+    line-height: 1.5; 
+}
+/* Existing CSS styles */
+
+ul {
+    margin-right: 5%;
+    margin-left: 5%;
+    font-family: "Jura", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 1.2vw;
     line-height: 1.5; 
+    list-style-type: none; 
+    text-align: left;
+    cursor: grab;
+    color:  rgb(222,26,36);
 }
 
-h1 {
-    color: rgb(116, 4, 4);
-    font-family: "Anonymous Pro", monospace;
+li {
+    margin-right: 5%;
+    margin-left: 5%;
+    font-family: "Jura", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2vw;
+    line-height: 1.5; 
+    cursor: grab;
+    text-align: left;
+    transition: opacity 0.3s ease;
+    color:  rgb(222,26,36);  /* Add opacity transition to <li> */
+}
+
+ul li a {
+    text-decoration: none; 
+    color:  rgb(222,26,36);/* Change link color */ /* Set cursor */
+}
+
+ul li a:hover { /* Change link color on hover */
+    opacity: 0.3; 
+    color:  rgb(222,26,36);/* Decrease opacity on hover */
+}
+
+/* Remaining CSS styles */
+
+
+h1[lang="ru"] {
+    font-family: "Jura", sans-serif;
     font-weight: 700;
     font-style: normal;
     font-size: 2vw;
     line-height: 1.5; 
 }
 
-/* Styling for the left page */
-.left-page {
-    float: left;
-    color: rgb(116, 4, 4);
+h1 {
+    font-family: "Jura", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 2vw;
+    line-height: 1.5; 
 }
 
-/* Styling for the right page */
-.right-page {
-    float: right;
-    color: rgb(116, 4, 4);
+h2 {
+    font-family: "Jura", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.8vw;
+    line-height: 1.5; 
 }
 
-/* Styling for the gutter */
-.gutter { /* Adjust the width of the gutter */
-    height: 100vw;
-    width: 100vh;
-    background: rgba(0, 0, 0, 0); /* Semi-transparent blurry line */
-    position: fixed;
-    display: fixed;
-    top: 0;
-    left: 50%; /* Position the gutter in the middle */
-    transform: translateX(-50%); /* Center the gutter horizontally */
+h2[lang="ru"] {
+    font-family: "Jura", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.8vw;
+    line-height: 1.5; 
 }
+
+
+
+
+.gutter {
+	position: fixed;
+    display: flex;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;	
+    pointer-events: none;
+    z-index: 100000;
+}
+
+.left-gutter {
+    width: 50%;
+    height: 100%;
+    box-shadow: 0px 0 15px 0 rgba(0,0,0,0.1);
+}
+
+.right-gutter {
+	width: 50%;
+    height: 100%;
+    box-shadow: 0px 0 15px 0 rgba(0,0,0,0.1);
+}
+
+
+
 
 .grid-container {
     overflow: hidden;
-    width: 100%; /* Adjust the container width as needed */
+    width: 100%; 
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr); 
-    grid-template-rows: repeat(3, 1fr);/* Five columns */
-    gap: 2vh; /* Gap between grid items */
-    transition: transform 0.3s ease; /* Add smooth transition for slide effect */
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2vh; 
+    transition: transform 0.3s ease; 
 }
 
 .grid-item {
     text-align: center;
-    padding: 2vh; /* Add padding for spacing */
+    padding: 2vh; 
 }
 
 .grid img {
@@ -99,25 +313,13 @@ h1 {
     transition: filter 0.3s ease;
 }
 
-    /* Add CSS for green overlay */
-    .green-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 128, 0, 0.5); /* Adjust the RGBA values to change the tint color and opacity */
-        mix-blend-mode: multiply; /* Blend mode to apply the tint */
-    }
-
 
 
 p {
     overflow: hidden;
-    font-family: "Anonymous Pro", monospace;
+    font-family: "Jura", sans-serif;
     font-weight: 400;
     font-style: normal;
-font-style: normal;
 font-size: 1.2vw;
 }
 
@@ -126,8 +328,48 @@ font-size: 1.2vw;
     width: 10vw;
     height: 10vh;
     background-image: url('cursor.svg'), url('leftcursor.svg');
-    background-repeat: no-repeat; /* Use the SVG file */
-    pointer-events: none; /* Ensure the cursor does not interact with content */
-    z-index: 9999; /* Ensure the cursor is on top of other elements */
+    background-repeat: no-repeat; 
+    pointer-events: none; 
+    z-index: 9999; 
 }
 
+
+
+/* devices */
+
+
+@media only screen and (max-width: 1280px) {
+	body:not(.printPreview) {
+		font-size: 1.325vw;
+		line-height: 2vw;
+
+	}
+}
+
+@media only screen and (min-width: 800px) {
+	.lastBeforeEndNote {
+		margin-bottom:150px;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+
+	body:not(.printPreview) {
+		font-size: 2.5vw;
+		line-height: 3.5vw;
+	}
+
+	body:not(.printPreview) h1 {
+		margin-top: .5em;
+	}
+
+	body:not(.printPreview) #cover h1, body:not(.printPreview) #toc h1{
+		font-size: 3em;
+	}	
+
+	/* book effect */
+
+	#gutter {
+		display: none;
+	}
+}
