@@ -33,42 +33,62 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
-// Add event listener to handle flipping through spreads
+// Update document click event listener to handle horizontal scrolling
 document.addEventListener('click', (e) => {
-    const windowWidth = window.innerWidth;
-    const clickX = e.clientX;
+    const windowHeight = window.innerHeight;
+    const clickY = e.clientY;
 
-    if (clickX < windowWidth / 2) {
-        // Clicked on the left side, scroll to previous spread
-        window.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+    if (clickY < windowHeight / 2) {
+        // Clicked on the top half, scroll to previous spread
+        window.scrollBy({ left: -window.innerWidth, behavior: 'smooth' });
     } else {
-        // Clicked on the right side, scroll to next spread
-        window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+        // Clicked on the bottom half, scroll to next spread
+        window.scrollBy({ left: window.innerWidth, behavior: 'smooth' });
     }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    const book = document.querySelector('.book');
+    const spreads = document.querySelectorAll('.spread');
 
-    document.addEventListener('click', function(event) {
-        const isLeftClick = event.clientX < window.innerWidth / 2;
+    spreads.forEach(spread => {
+        spread.addEventListener('click', function() {
+            const nextPage = parseInt(spread.getAttribute('data-page')) + 1;
+            const nextSpread = document.querySelector(`.spread[data-page="${nextPage}"]`);
 
-        if (isLeftClick) {
-            openNextSpread();
-        } else {
-            openPreviousSpread();
-        }
+            if (nextSpread) {
+                nextSpread.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
     });
+});
 
-    function openNextSpread() {
-        book.classList.remove('open');
-        void book.offsetWidth; // Trigger reflow to reset animation
-        book.classList.add('open');
-    }
 
-    function openPreviousSpread() {
-        book.classList.remove('open');
-        void book.offsetWidth; // Trigger reflow to reset animation
-        book.classList.add('open');
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    const spreads = document.querySelectorAll('.spread');
+
+    spreads.forEach(spread => {
+        spread.addEventListener('click', function(event) {
+            const clickX = event.clientX;
+            const windowWidth = window.innerWidth;
+
+            // Check if the click is on the right half of the screen
+            if (clickX >= windowWidth / 2) {
+                // Clicked on the right side, scroll to next spread
+                const nextPage = parseInt(spread.getAttribute('data-page')) + 1;
+                const nextSpread = document.querySelector(`.spread[data-page="${nextPage}"]`);
+                
+                if (nextSpread) {
+                    nextSpread.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                // Clicked on the left side, scroll to previous spread
+                const prevPage = parseInt(spread.getAttribute('data-page')) - 1;
+                const prevSpread = document.querySelector(`.spread[data-page="${prevPage}"]`);
+
+                if (prevSpread) {
+                    prevSpread.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
 });

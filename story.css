@@ -2,16 +2,16 @@ body {
     margin: 0;
     padding: 0;
     cursor: none;
+    overflow-x: scroll; /* Enable horizontal scrolling */
+   /* Disable vertical scrolling */
 }
 
 
 .book-page {
-    width: 50%;
+    width: 50%; /* Keep each page width as it is */
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: inline-block; /* Change display to inline-block */
+    scroll-snap-align: start; /* Snap to start of each page */
     background-color: #fff;
     overflow: hidden;
     font-family: "Jura", sans-serif;
@@ -38,29 +38,31 @@ body {
 */
 
 section {
-	position: relative;
-	z-index: 10000;
-	mix-blend-mode: lighten;
-	background: white;
+    display: flex;
+    flex-direction: row; /* Arrange spreads horizontally */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory; 
 }
 
 .left-page {
     float: left;
-    color: rgb(5,101,23);
+    color: #0000FF;
 }
 
 .right-page {
     float: right;
-    color: rgb(222,26,36);
+    color: #FF0000;
 }
 
 .spread {
-	width: calc(100vw - 3px);
-	float: left;
-	vertical-align: top;
-	text-align: center;
-	position: relative;
-    flex-wrap: wrap;
+    width: 100vw; /* Set spread width to the full viewport width */
+    height: 100vh; /* Set spread height to the full viewport height */
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    overflow-x: scroll; 
+    scroll-snap-align: start; /* Snap each spread to the start */
+    flex: 0 0 100vw; /* Each spread takes full width of viewport */
 }
 
 .pageNum {
@@ -95,7 +97,7 @@ section {
 }
 
 #toc ul li a:hover{
-	color: black;
+	color: #FF0000;
 	opacity: .5;
 }
 
@@ -114,32 +116,34 @@ section {
     z-index: 0;
 }
 
-.green {
+.blue {
     width: 50%;
     height: 100%;
-    background: rgb(5,101,23);
+    background: #0000FF;
 }
 
 .red {
 	width: 50%;
     height: 100%;
-    background: rgb(222,26,36);
+    background: #FF0000;
 }
 
 .left-page p, 
 .left-page li,
 .left-page ul,
 .left-page h1,
-.left-page h2 {
-    color: rgb(5,101,23); /* Blue color for paragraphs on the left page */
+.left-page h2,
+.left-page h3 {
+    color: #0000FF; /* Blue color for paragraphs on the left page */
 }
 
 .right-page p,
 .right-page ul,
 .right-page li,
 .right-page h1,
-.right-page h2 {
-    color: rgb(222,26,36); /* Red color for elements on the right page */
+.right-page h2,
+.right-page h3 {
+    color: #FF0000; /* Red color for elements on the right page */
 }
 
 
@@ -159,7 +163,7 @@ section {
 
 
 #cover h1{
-	font-size: 5.25em;	
+	font-size: 5em;	
 	line-height: 1.1em;	
 	margin-bottom: .5em;
 
@@ -198,7 +202,7 @@ ul {
     list-style-type: none; 
     text-align: left;
     cursor: grab;
-    color:  rgb(222,26,36);
+    color:  #FF0000;
 }
 
 li {
@@ -212,17 +216,17 @@ li {
     cursor: grab;
     text-align: left;
     transition: opacity 0.3s ease;
-    color:  rgb(222,26,36);  /* Add opacity transition to <li> */
+    color:  #FF0000;  /* Add opacity transition to <li> */
 }
 
 ul li a {
     text-decoration: none; 
-    color:  rgb(222,26,36);/* Change link color */ /* Set cursor */
+    color:  #FF0000;/* Change link color */ /* Set cursor */
 }
 
 ul li a:hover { /* Change link color on hover */
     opacity: 0.3; 
-    color:  rgb(222,26,36);/* Decrease opacity on hover */
+    color:  #FF0000;/* Decrease opacity on hover */
 }
 
 /* Remaining CSS styles */
@@ -248,7 +252,7 @@ h2 {
     font-family: "Jura", sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 1.8vw;
+    font-size: 2vw;
     line-height: 1.5; 
 }
 
@@ -256,20 +260,63 @@ h2[lang="ru"] {
     font-family: "Jura", sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 1.8vw;
+    font-size: 2vw;
     line-height: 1.5; 
+}
+
+h3 {
+    font-family: "Shantell Sans", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2vw;
+}
+
+.back-to-toc {
+    position: fixed;
+    bottom: 2vh;
+    left: 2vw;
+    display: inline-block;
+    padding: 0.5vh 0.5vw;
+    color: #FF0000;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    z-index: 999; /* Ensure it's above other content */
+}
+
+.back-to-toc:hover {
+    opacity: 0.8;
+}
+
+.back-to-toc .page-number-toc {
+    font-size: 3.5vh;
+    margin-right: 0.3vw;
+}
+
+.back-to-toc  {
+    font-size: 2vh;
+}
+
+@media screen and (max-width: 768px) {
+    .back-to-toc {
+        bottom: 2vh;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 
 
 
 .gutter {
-	position: fixed;
+    position: fixed;
     display: flex;
     top: 0%;
-    left: 0%;
+    left: 50%; /* Align gutter to the center */
+    transform: translateX(-50%); /* Adjust for center alignment */
     width: 100vw;
-    height: 100vh;	
+    height: 100vh;
     pointer-events: none;
     z-index: 100000;
 }
@@ -286,7 +333,12 @@ h2[lang="ru"] {
     box-shadow: 0px 0 15px 0 rgba(0,0,0,0.1);
 }
 
-
+@media screen and (max-width: 768px) {
+    /* Adjust gutter styles for mobile */
+    .left-gutter, .right-gutter {
+        box-shadow: none; /* Remove shadow for mobile */
+    }
+}
 
 
 .grid-container {
@@ -308,8 +360,8 @@ h2[lang="ru"] {
 }
 
 .grid img {
-    max-width: 100%;
-    height: auto;
+    max-width: 80%;
+    max-height: auto;
     transition: filter 0.3s ease;
 }
 
