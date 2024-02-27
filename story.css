@@ -201,7 +201,6 @@ ul {
     line-height: 1.5; 
     list-style-type: none; 
     text-align: left;
-    cursor: grab;
     color:  #FF0000;
 }
 
@@ -213,7 +212,6 @@ li {
     font-style: normal;
     font-size: 1.2vw;
     line-height: 1.5; 
-    cursor: grab;
     text-align: left;
     transition: opacity 0.3s ease;
     color:  #FF0000;  /* Add opacity transition to <li> */

@@ -33,6 +33,23 @@ document.addEventListener('mousemove', (e) => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the height of the viewport
+    const viewportHeight = window.innerHeight;
+
+    // Add click event listener to the document
+    document.addEventListener('click', function(event) {
+        // Check if the click is on the left side of the page
+        if (event.clientX < window.innerWidth / 2) {
+            // Scroll to the previous spread
+            window.scrollBy({ top: -viewportHeight, behavior: 'auto' });
+        } else {
+            // Scroll to the next spread
+            window.scrollBy({ top: viewportHeight, behavior: 'auto' });
+        }
+    });
+});
+
 // Update document click event listener to handle horizontal scrolling
 document.addEventListener('click', (e) => {
     const windowHeight = window.innerHeight;
@@ -61,6 +78,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const spreads = document.querySelectorAll('.spread');
+
+    spreads.forEach(spread => {
+        spread.addEventListener('click', function(event) {
+            console.log('Spread clicked');
+            const clickX = event.clientX;
+            const windowWidth = window.innerWidth;
+
+            // Check if the click is on the right cursor
+            if (clickX >= windowWidth / 2) {
+                // Clicked on the right cursor, scroll to the next spread
+                const nextPage = parseInt(spread.getAttribute('data-page')) + 1;
+                const nextSpread = document.querySelector(`.spread[data-page="${nextPage}"]`);
+
+                if (nextSpread) {
+                    nextSpread.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } else {
+                // Clicked on the left cursor, scroll to the previous spread
+                const prevPage = parseInt(spread.getAttribute('data-page')) - 1;
+                const prevSpread = document.querySelector(`.spread[data-page="${prevPage}"]`);
+
+                if (prevSpread) {
+                    prevSpread.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+});
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
